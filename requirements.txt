@@ -1,0 +1,11 @@
+scikit-learn
+requests
+numpy
+joblib
+pandas
+pyarrow
+datasets
+python-pptx
+matplotlib
+Flask
+Flask-CORS

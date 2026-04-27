@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-canvas text-bauhaus-black font-outfit antialiased;
+  }
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(#121212 2px, transparent 2px);
+  background-size: 20px 20px;
+}
