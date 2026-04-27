@@ -21,10 +21,11 @@ A offline-first Natural Language Understanding (NLU) engine designed for high-pr
 
 ## Technology Stack
 
-- **Core**: Python 3.x
+- **Core Engine**: Python 3.x
 - **Machine Learning**: Scikit-Learn (Logistic Regression, TF-IDF Vectorization)
 - **Data Handling**: Pandas, PyArrow (Parquet support)
-- **Model Management**: Joblib
+- **Web API Backend**: Flask, Flask-CORS
+- **Web UI Frontend**: React 18, Vite, Tailwind CSS (Bauhaus Design System)
 
 ---
 
@@ -34,7 +35,9 @@ A offline-first Natural Language Understanding (NLU) engine designed for high-pr
 .
 ├── train.py               # Data ingestion, preprocessing, and model training
 ├── predict.py             # CLI interface for real-time intent classification
-├── run_classifier.bat     # Automation script (Check -> Train -> Run)
+├── api.py                 # Flask REST API backend serving the model
+├── frontend/              # React + Vite frontend Web UI application
+├── run_classifier.bat     # Automation script (Check -> Train -> Run CLI)
 ├── requirements.txt       # Project dependencies
 ├── model.pkl              # Serialized trained model (generated after training)
 └── README.md              # Project documentation
@@ -46,28 +49,52 @@ A offline-first Natural Language Understanding (NLU) engine designed for high-pr
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/nlp-intent-classifier.git
-   cd nlp-intent-classifier
+   git clone https://github.com/hamidr0011/nlp-intent-clasifiear.git
+   cd nlp-intent-clasifiear
    ```
 
-2. **Install dependencies**:
-   It is recommended to use a virtual environment.
+2. **Install Python dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Train and Run (Automatic)**:
-   Simply run the automation script:
+3. **Train the Model**:
+   If `model.pkl` doesn't exist yet, run the training script or batch file:
    ```bash
+   python train.py
+   # OR
    run_classifier.bat
+   ```
+
+4. **Install Frontend dependencies**:
+   ```bash
+   cd frontend
+   npm install
    ```
 
 ---
 
 ## Usage
 
-### Interactive Prediction
-Run the prediction interface directly to test custom utterances:
+### Interactive Web UI (Recommended)
+
+To run the full Bauhaus Web Interface:
+
+1. **Start the Backend API** (in the root directory):
+   ```bash
+   python api.py
+   ```
+   *Runs on `http://127.0.0.1:5000`*
+
+2. **Start the Frontend UI** (in a new terminal):
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+   *Runs on `http://localhost:5173`*
+
+### Interactive CLI Prediction
+Run the prediction interface directly in the terminal:
 ```bash
 python predict.py
 ```
@@ -76,10 +103,6 @@ python predict.py
 You: "What is the weather like today?"
 Intent: weather_query
 Confidence: 0.98
-
-You: "Switch off the bedroom lights"
-Intent: iot_hue_lightoff
-Confidence: 0.99
 ```
 
 ### Manual Training
@@ -103,10 +126,10 @@ The classifier uses a **Multi-class Logistic Regression** model within a Scikit-
 
 ## Future Roadmap
 
+- [x] **Web API**: Wrap the model in a FastAPI or Flask microservice.
+- [x] **GUI**: Develop a modern React/Vite dashboard for interaction using Bauhaus design.
 - [ ] **Advanced NLP**: Implement BERT/DistilBERT for deeper contextual understanding.
 - [ ] **Multilingual support**: Extend training to Spanish, French, and other MASSIVE partitions.
-- [ ] **Web API**: Wrap the model in a FastAPI or Flask microservice.
-- [ ] **GUI**: Develop a modern React/Next.js dashboard for interaction.
 
 ---
 
